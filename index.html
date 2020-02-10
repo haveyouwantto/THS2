@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <h1 class="content center shadow">
+        关于东方Project
+    </h1>
+    <span class="span">
+        <div id='back'></div>
+        <div class="content articles">
+            <div class="shadow article">
+                <h2 class="center">
+                    东方是什么？
+                </h2>
+                <strong>东方Project</strong>
+                （日文：東方Project（とうほうプロジェクト），英文：Touhou Project，简称：东方）<br>
+                东方Project是日本同人社团上海爱丽丝幻乐团（以及和黄昏边境合作）制作的一系列同人作品，系列以清版弹幕射击游戏为主。
+                <div id="year"></div>
+                东方对于二次创作十分包容，因此诞生了极其庞大的二次创作社区。也因为如此，东方荣获“最多作品的同人射击游戏”这项吉尼斯世界纪录。
+            </div>
+            <div class="shadow article">
+                <h2 class="center">
+                    我该如何了解东方？
+                </h2>
+                <li>如果你喜欢动画，那么你可以看看优质的同人动画，比如《幻想万华镜》、《梦想夏乡》、《秘封活动记录》等。你可以在哔哩哔哩上搜索。</li>
+                <li>如果你是硬核玩家，那么你可以试试东方弹幕系列游戏。现已上架steam。</li>
+                <li>如果你喜欢音乐，那么你可以听听庞大的东方同人曲库。这里推荐使用网易云音乐。</li>
+                <li>如果你喜欢了解故事，你可以去看看<a
+                        href="//search.bilibili.com/all?keyword=%E7%8C%A9%E7%8C%A9%E4%B9%9F%E8%83%BD%E6%87%82%E7%9A%84%E4%B8%9C%E6%96%B9project%20Z一LGW">《猩东方》</a>系列。
+                </li>
+                <li>如果你想深入了解东方，你可以访问THBWiki。</li>
+            </div>
+            <div class="shadow article">
+                <h2 class="center">
+                    相关网站
+                </h2>
+                <li><a href="//www16.big.or.jp/~zun/">上海爱丽丝幻乐团的官网（日文）</a><br></li>
+                <li><a href="//www.tasofro.net/">黄昏边境的官网（日文）</a></li>
+                <li><a href="//thwiki.cc">THBWiki</a><br></li>
+                <li><a href="//bbs.nyasama.com/">喵玉殿论坛</a></li>
+                <li><a href="//tieba.baidu.com/f?kw=%B6%AB%B7%BD">百度东方吧</a></li>
+                <li><a href="//bilibili.com">哔哩哔哩</a></li>
+            </div>
+        </div>
+        <div class="content center">
+            <div class="shadow player">
+                <img id="control" type="0" src="img/play.png">
+                绯想天
+            </div>
+            <div class="shadow image">
+                <img class="reimu" src="img/39486261_p0.png">
+                博丽灵梦----东方Project系列中的主角之一。
+            </div>
+            <div class="shadow image">
+                <img class="reimu" src="img/th08-ex.png">
+                东方弹幕游戏。图为东方永夜抄Extra关道中。
+            </div>
+        </div>
+    </span>
+    <audio id="player" src="music/swr_p.mp3"></audio>
+    <script>
+        let year = document.getElementById('year');
+        let history = new Date('1996-11-03').getTime();
+        let now = new Date().getTime();
+        year.innerText = '迄今为止，东方已经有' + parseInt((now - history) / 31536000000) + '年的历史了。';
+
+        let player = document.getElementById('player');
+        let control = document.getElementById('control');
+        control.addEventListener('click', () => {
+            if (control.getAttribute('type') == '0') {
+                control.setAttribute('type', '1');
+                control.setAttribute('src', 'img/pause.png');
+                player.play();
+            } else {
+                control.setAttribute('type', '0');
+                control.setAttribute('src', 'img/play.png');
+                player.pause();
+            }
+        });
+
+        let switched = false;
+
+        updatePlayer = () => {
+            let t = player.currentTime;
+            if (t > 28.4 && !switched) {
+                switched = true;
+                player.src = 'music/swr_l.mp3';
+                player.loop = true;
+                player.play();
+            }
+        }
+        setInterval(updatePlayer, 50);
+    </script>
+</body>
+
+</html>
